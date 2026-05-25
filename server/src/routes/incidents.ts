@@ -2,7 +2,25 @@ import express from "express";
 
 const router = express.Router();
 
-let incidents: any[] = [];
+interface Incident {
+
+  id: number;
+
+  title: string;
+
+  severity: string;
+
+  status: string;
+
+  rootCause: string;
+
+  aiConfidence: number;
+
+  createdAt: string;
+
+}
+
+let incidents: Incident[] = [];
 
 const templates = [
 
@@ -38,25 +56,9 @@ const templates = [
       "Replication lag exceeded safe threshold limits.",
   },
 
-  {
-    title: "Authentication Service Timeout",
-    severity: "High",
-    status: "Analyzing",
-    rootCause:
-      "OAuth token validation service degraded.",
-  },
-
-  {
-    title: "Redis Cache Eviction Storm",
-    severity: "Critical",
-    status: "Detected",
-    rootCause:
-      "Cache memory saturation exceeded threshold.",
-  },
-
 ];
 
-function addIncident() {
+function createIncident() {
 
   const random =
     templates[
@@ -66,9 +68,7 @@ function addIncident() {
       )
     ];
 
-  const now = new Date();
-
-  const incident = {
+  const incident: Incident = {
 
     id: Date.now(),
 
@@ -83,19 +83,12 @@ function addIncident() {
     aiConfidence:
       Math.floor(Math.random() * 10) + 90,
 
-    detectionTime:
-      now.toLocaleTimeString(),
-
-    detectedAt:
-      now.toLocaleDateString(),
+    createdAt:
+      new Date().toISOString(),
 
   };
 
-  // NEW INCIDENT ADDED TO TOP
-
   incidents.unshift(incident);
-
-  // KEEP LAST 50 INCIDENTS
 
   if (incidents.length > 50) {
 
@@ -105,19 +98,15 @@ function addIncident() {
 
 }
 
-// INITIAL INCIDENTS
-
 for (let i = 0; i < 5; i++) {
 
-  addIncident();
+  createIncident();
 
 }
 
-// AUTO ADD INCIDENTS
-
 setInterval(() => {
 
-  addIncident();
+  createIncident();
 
 }, 5000);
 
