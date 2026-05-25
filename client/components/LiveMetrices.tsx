@@ -2,96 +2,204 @@
 
 import { useEffect, useState } from "react";
 
-import io from "socket.io-client";
+interface Metrics {
 
-const socket = io("http://localhost:5000");
+  cpu: number;
 
-export default function LiveMetrics() {
-  const [metrics, setMetrics] = useState({
-    cpu: 0,
-    memory: 0,
-    network: 0,
-    requests: 0,
-    latency: 0,
-  });
+  memory: number;
 
-  useEffect(() => {
-    socket.on("metricsUpdate", (data) => {
-      setMetrics(data);
-    });
+  network: number;
 
-    return () => {
-      socket.off("metricsUpdate");
-    };
-  }, []);
+  api: number;
 
-  return (
-    <div className="glass rounded-3xl p-6">
-      <h2 className="text-2xl font-bold mb-6">
-        Live Infrastructure Telemetry
-      </h2>
+  latency: number;
 
-      <div className="space-y-5">
+  updatedAt: string;
 
-        <MetricBar
-          label="CPU Usage"
-          value={metrics.cpu}
-          color="bg-red-500"
-        />
-
-        <MetricBar
-          label="Memory Usage"
-          value={metrics.memory}
-          color="bg-blue-500"
-        />
-
-        <MetricBar
-          label="Network Traffic"
-          value={metrics.network}
-          color="bg-green-500"
-        />
-
-        <MetricBar
-          label="API Requests"
-          value={Math.floor(metrics.requests / 100)}
-          color="bg-cyan-500"
-        />
-
-        <MetricBar
-          label="Latency"
-          value={Math.floor(metrics.latency / 4)}
-          color="bg-yellow-500"
-        />
-
-      </div>
-    </div>
-  );
 }
 
-function MetricBar({
-  label,
-  value,
-  color,
-}: {
-  label: string;
-  value: number;
-  color: string;
-}) {
-  return (
-    <div>
-      <div className="flex justify-between mb-2">
-        <span>{label}</span>
-        <span>{value}%</span>
+export default function LiveMetrices() {
+
+  const [metrics, setMetrics] =
+    useState<Metrics | null>(null);
+
+  const fetchMetrics = async () => {
+
+    try {
+
+      const response = await fetch(
+        "https://grootai.onrender.com/api/metrices"
+      );
+
+      const data = await response.json();
+
+      setMetrics(data);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+  useEffect(() => {
+
+    fetchMetrics();
+
+    const interval = setInterval(() => {
+
+      fetchMetrics();
+
+    }, 2000);
+
+    return () => clearInterval(interval);
+
+  }, []);
+
+  const MetricBar = ({
+    label,
+    value,
+    suffix = "%",
+  }: {
+    label: string;
+    value: number;
+    suffix?: string;
+  }) => (
+
+    <div className="mb-6">
+
+      <div className="
+        flex justify-between
+        mb-2
+      ">
+
+        <span className="
+          text-white
+          font-medium
+        ">
+          {label}
+        </span>
+
+        <span className="
+          text-cyan-400
+          font-bold
+        ">
+          {value}{suffix}
+        </span>
+
       </div>
 
-      <div className="w-full h-3 bg-black/30 rounded-full overflow-hidden">
+      <div className="
+        w-full
+        bg-[#111827]
+        rounded-full
+        h-4
+      ">
+
         <div
-          className={`${color} h-full rounded-full transition-all duration-1000`}
+          className="
+            bg-linear-to-r
+            from-cyan-400
+            to-blue-500
+            h-4
+            rounded-full
+            transition-all
+            duration-1000
+          "
           style={{
-            width: `${value}%`,
+            width: `${Math.min(value, 100)}%`,
           }}
         />
+
       </div>
+
     </div>
+
+  );
+
+  return (
+
+    <div className="
+      bg-[#070B1A]
+      border border-[#1D2333]
+      rounded-3xl
+      p-6
+    ">
+
+      <div className="
+        flex justify-between
+        items-center
+        mb-8
+      ">
+
+        <h1 className="
+          text-3xl
+          font-bold
+          text-white
+        ">
+          Live Infrastructure Telemetry
+        </h1>
+
+        <div className="
+          text-right
+        ">
+
+          <p className="
+            text-gray-400
+            text-sm
+          ">
+            Updated
+          </p>
+
+          <p className="
+            text-cyan-400
+            font-bold
+          ">
+            {metrics?.updatedAt}
+          </p>
+
+        </div>
+
+      </div>
+
+      {metrics && (
+
+        <>
+
+          <MetricBar
+            label="CPU Usage"
+            value={metrics.cpu}
+          />
+
+          <MetricBar
+            label="Memory Usage"
+            value={metrics.memory}
+          />
+
+          <MetricBar
+            label="Network Traffic"
+            value={metrics.network}
+            suffix=" MB/s"
+          />
+
+          <MetricBar
+            label="API Requests"
+            value={metrics.api}
+            suffix=" req"
+          />
+
+          <MetricBar
+            label="Latency"
+            value={metrics.latency}
+            suffix=" ms"
+          />
+
+        </>
+
+      )}
+
+    </div>
+
   );
 }
