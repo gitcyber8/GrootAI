@@ -91,11 +91,11 @@ function addIncident() {
 
   };
 
-  // ADD NEW INCIDENT TO TOP
+  // NEW INCIDENT ADDED TO TOP
 
   incidents.unshift(incident);
 
-  // KEEP MAX 50 INCIDENTS
+  // KEEP LAST 50 INCIDENTS
 
   if (incidents.length > 50) {
 
@@ -113,7 +113,7 @@ for (let i = 0; i < 5; i++) {
 
 }
 
-// CONTINUOUS INCIDENT ADDITION
+// AUTO ADD INCIDENTS
 
 setInterval(() => {
 
