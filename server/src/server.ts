@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("RootMind AI Backend Running");
+  res.send("Groot AI Backend Running");
 });
 
 app.use("/api/chat", chatRoutes);
