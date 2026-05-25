@@ -7,14 +7,10 @@ export default function MetricsChart() {
 
   useEffect(() => {
     async function fetchMetrics() {
-      try {
-        const res = await fetch("http://localhost:3000/api/metrics");
-        const data = await res.json();
+      const res = await fetch("/api/metrics");
+      const data = await res.json();
 
-        setMetrics(data);
-      } catch (error) {
-        console.log("Error fetching metrics:", error);
-      }
+      setMetrics(data);
     }
 
     fetchMetrics();
@@ -62,4 +58,5 @@ export default function MetricsChart() {
         </div>
       </div>
     </div>
-  )}
+  );
+}
