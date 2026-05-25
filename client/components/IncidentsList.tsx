@@ -8,138 +8,48 @@ interface Incident {
   severity: string;
   status: string;
   rootCause: string;
-  remediation: string;
   aiConfidence: number;
+  time: string;
 }
 
 export default function IncidentsList() {
 
-  const [incident, setIncident] =
-    useState<Incident | null>(null);
+  const [incidents, setIncidents] =
+    useState<Incident[]>([]);
 
-  const [currentTime, setCurrentTime] =
-    useState("");
+  const fetchIncidents = async () => {
 
-  const incidentTemplates = [
+    try {
 
-    {
-      title: "Container Memory Leak",
-      severity: "Critical",
-      status: "Detected",
-      rootCause:
-        "Redis memory overflow caused cache instability.",
-      remediation:
-        "Faulty nodes isolated by remediation engine.",
-    },
-
-    {
-      title: "Kubernetes Pod Crash",
-      severity: "High",
-      status: "Mitigating",
-      rootCause:
-        "Node pressure triggered pod eviction cascade.",
-      remediation:
-        "AI scheduler redistributed workloads automatically.",
-    },
-
-    {
-      title: "API Gateway Latency Spike",
-      severity: "Medium",
-      status: "Monitoring",
-      rootCause:
-        "Traffic surge overloaded edge gateway clusters.",
-      remediation:
-        "Dynamic load balancing activated successfully.",
-    },
-
-    {
-      title: "Database Replication Failure",
-      severity: "Critical",
-      status: "Escalated",
-      rootCause:
-        "Replication lag exceeded safe threshold limits.",
-      remediation:
-        "Failover replica promoted automatically.",
-    },
-
-    {
-      title: "Authentication Service Timeout",
-      severity: "High",
-      status: "Analyzing",
-      rootCause:
-        "OAuth token validation service degraded.",
-      remediation:
-        "Fallback authentication pipeline activated.",
-    },
-
-  ];
-
-  useEffect(() => {
-
-    generateIncident();
-
-    // LIVE SYSTEM CLOCK
-
-    const clockInterval = setInterval(() => {
-
-      const now = new Date();
-
-      setCurrentTime(
-        now.toLocaleTimeString()
+      const response = await fetch(
+        "https://grootai.onrender.com/api/incidents"
       );
 
-    }, 1000);
+      const data = await response.json();
 
-    // AUTO INCIDENT CHANGER
+      setIncidents(data);
 
-    const incidentInterval = setInterval(() => {
+    } catch (error) {
 
-      generateIncident();
+      console.log(error);
 
-    }, 8000);
-
-    return () => {
-
-      clearInterval(clockInterval);
-
-      clearInterval(incidentInterval);
-
-    };
-
-  }, []);
-
-  const generateIncident = () => {
-
-    const random =
-      incidentTemplates[
-        Math.floor(
-          Math.random() *
-            incidentTemplates.length
-        )
-      ];
-
-    setIncident({
-
-      id: Math.random(),
-
-      title: random.title,
-
-      severity: random.severity,
-
-      status: random.status,
-
-      rootCause: random.rootCause,
-
-      remediation: random.remediation,
-
-      aiConfidence:
-        Math.floor(Math.random() * 10) + 90,
-
-    });
+    }
 
   };
 
-  if (!incident) return null;
+  useEffect(() => {
+
+    fetchIncidents();
+
+    const interval = setInterval(() => {
+
+      fetchIncidents();
+
+    }, 3000);
+
+    return () => clearInterval(interval);
+
+  }, []);
 
   return (
 
@@ -167,235 +77,179 @@ export default function IncidentsList() {
 
       </div>
 
-      {/* MAIN CARD */}
+      {/* SCROLL CONTAINER */}
 
       <div className="
         bg-[#070B1A]
         border border-[#1D2333]
         rounded-3xl
-        p-8
-        shadow-2xl
-        transition-all
+        p-6
+        h-175
+        overflow-y-auto
+        space-y-5
       ">
 
-        {/* TOP */}
+        {incidents.map((incident) => (
 
-        <div className="
-          flex items-center
-          justify-between
-        ">
+          <div
+            key={incident.id}
+            className="
+              bg-[#0B1030]
+              border border-[#1F2A5C]
+              rounded-3xl
+              p-6
+              transition-all
+              hover:border-cyan-400
+            "
+          >
 
-          <div>
-
-            <h2 className="
-              text-4xl
-              font-bold
-              text-white
-              animate-pulse
-            ">
-              {incident.title}
-            </h2>
+            {/* TOP */}
 
             <div className="
               flex items-center
-              gap-3
-              mt-5
+              justify-between
             ">
 
-              <span className="
-                text-gray-400
-                text-2xl
-              ">
-                Status:
-              </span>
+              <div>
 
-              <span className="
-                text-cyan-400
-                text-2xl
-                font-semibold
-                animate-pulse
+                <h2 className="
+                  text-3xl
+                  font-bold
+                  text-white
+                ">
+                  {incident.title}
+                </h2>
+
+                <div className="
+                  flex items-center
+                  gap-3
+                  mt-3
+                ">
+
+                  <span className="
+                    text-gray-400
+                    text-lg
+                  ">
+                    Status:
+                  </span>
+
+                  <span className="
+                    text-cyan-400
+                    text-lg
+                    animate-pulse
+                  ">
+                    {incident.status}
+                  </span>
+
+                </div>
+
+              </div>
+
+              <div className="
+                text-right
               ">
-                {incident.status}
-              </span>
+
+                <div className="
+                  h-4 w-4
+                  bg-red-500
+                  rounded-full
+                  animate-ping
+                  ml-auto
+                " />
+
+                <p className="
+                  text-gray-500
+                  mt-3
+                ">
+                  {incident.time}
+                </p>
+
+              </div>
 
             </div>
 
-          </div>
-
-          {/* LIVE DOT */}
-
-          <div className="
-            flex items-center gap-3
-          ">
+            {/* ANALYSIS */}
 
             <div className="
-              h-5 w-5
-              bg-red-500
-              rounded-full
-              animate-ping
-            " />
-
-            <span className="
-              text-red-400
-              text-lg
+              mt-6
+              space-y-5
             ">
-              LIVE
-            </span>
 
-          </div>
+              <div>
 
-        </div>
+                <p className="
+                  text-gray-400
+                  mb-2
+                ">
+                  Root Cause Analysis
+                </p>
 
-        {/* AI ANALYSIS */}
+                <p className="
+                  text-white
+                  text-lg
+                ">
+                  {incident.rootCause}
+                </p>
 
-        <div className="
-          mt-8
-          bg-[#0B1030]
-          border border-[#1F2A5C]
-          rounded-3xl
-          p-8
-        ">
+              </div>
 
-          <h3 className="
-            text-cyan-400
-            font-bold
-            text-2xl
-            tracking-widest
-          ">
-            AI ANALYSIS
-          </h3>
-
-          <div className="
-            mt-10
-            space-y-10
-          ">
-
-            {/* ROOT CAUSE */}
-
-            <div>
-
-              <p className="
-                text-gray-400
-                text-2xl
-                mb-3
+              <div className="
+                flex items-center
+                justify-between
               ">
-                Root Cause Analysis:
-              </p>
 
-              <p className="
-                text-white
-                text-2xl
-                leading-relaxed
-              ">
-                {incident.rootCause}
-              </p>
+                <div>
 
-            </div>
+                  <p className="
+                    text-gray-400
+                    mb-1
+                  ">
+                    AI Confidence
+                  </p>
 
-            {/* REMEDIATION */}
+                  <p className="
+                    text-green-400
+                    text-2xl
+                    font-bold
+                  ">
+                    {incident.aiConfidence}%
+                  </p>
 
-            <div>
+                </div>
 
-              <p className="
-                text-gray-400
-                text-2xl
-                mb-3
-              ">
-                Recommended Remediation:
-              </p>
+                <div>
 
-              <p className="
-                text-white
-                text-2xl
-                leading-relaxed
-              ">
-                {incident.remediation}
-              </p>
+                  <span
+                    className={`
+                      px-4 py-2 rounded-full
 
-            </div>
+                      ${
+                        incident.severity ===
+                        "Critical"
+                          ? "bg-red-500/20 text-red-400"
+                          : incident.severity ===
+                            "High"
+                          ? "bg-orange-500/20 text-orange-400"
+                          : "bg-yellow-500/20 text-yellow-400"
+                      }
+                    `}
+                  >
+                    {incident.severity}
+                  </span>
 
-            {/* CONFIDENCE */}
+                </div>
 
-            <div>
-
-              <p className="
-                text-gray-400
-                text-2xl
-                mb-3
-              ">
-                AI Confidence Score:
-              </p>
-
-              <p className="
-                text-green-400
-                text-3xl
-                font-bold
-              ">
-                {incident.aiConfidence}%
-              </p>
+              </div>
 
             </div>
 
           </div>
 
-        </div>
-
-        {/* FOOTER */}
-
-        <div className="
-          flex items-center
-          justify-between
-          mt-8
-        ">
-
-          <div className="
-            flex items-center gap-3
-          ">
-
-            <div className="
-              h-3 w-3
-              bg-green-400
-              rounded-full
-              animate-pulse
-            " />
-
-            <p className="
-              text-gray-400
-              text-xl
-            ">
-              Autonomous remediation active
-            </p>
-
-          </div>
-
-          {/* REAL SYSTEM TIME */}
-
-          <div className="
-            text-right
-          ">
-
-            <p className="
-              text-gray-500
-              text-sm
-            ">
-              SYSTEM TIME
-            </p>
-
-            <p className="
-              text-cyan-400
-              text-2xl
-              font-bold
-              tracking-widest
-            ">
-              {currentTime}
-            </p>
-
-          </div>
-
-        </div>
+        ))}
 
       </div>
 
     </div>
+
   );
 }
