@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import chatRoutes from "./routes/chat";
 import incidentsRoutes from "./routes/incidents";
+import metricsRoutes from "./routes/metrices"
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 app.use("/api/chat", chatRoutes);
 
 app.use("/api/incidents", incidentsRoutes);
+app.use("/api/metrices",metricsRoutes)
 
 const PORT = process.env.PORT || 5000;
 

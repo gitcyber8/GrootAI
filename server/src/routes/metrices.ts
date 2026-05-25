@@ -2,26 +2,32 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  try {
-    const metrics = {
-      uptime: "99.98%",
-      incidents: 24,
-      resolved: 21,
-      active: 3,
-      mttr: "18m",
-      cpu: Math.floor(Math.random() * 40) + 40,
-      memory: Math.floor(Math.random() * 30) + 50,
-      latency: Math.floor(Math.random() * 100) + 100,
-    };
+router.get("/", (req, res) => {
 
-    res.json(metrics);
+  const telemetry = {
 
-  } catch (error) {
-    res.status(500).json({
-      error: "Failed to fetch metrics",
-    });
-  }
+    cpu:
+      Math.floor(Math.random() * 40) + 40,
+
+    memory:
+      Math.floor(Math.random() * 30) + 50,
+
+    network:
+      Math.floor(Math.random() * 500) + 300,
+
+    api:
+      Math.floor(Math.random() * 2000) + 1000,
+
+    latency:
+      Math.floor(Math.random() * 100) + 20,
+
+    updatedAt:
+      new Date().toLocaleTimeString(),
+
+  };
+
+  res.json(telemetry);
+
 });
 
 export default router;
