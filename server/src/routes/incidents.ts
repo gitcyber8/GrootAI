@@ -46,14 +46,23 @@ const templates = [
       "OAuth token validation service degraded.",
   },
 
+  {
+    title: "Redis Cache Eviction Storm",
+    severity: "Critical",
+    status: "Detected",
+    rootCause:
+      "Cache memory saturation exceeded threshold.",
+  },
+
 ];
 
-function generateIncident() {
+function addIncident() {
 
   const random =
     templates[
       Math.floor(
-        Math.random() * templates.length
+        Math.random() *
+          templates.length
       )
     ];
 
@@ -76,9 +85,13 @@ function generateIncident() {
 
   };
 
+  // ADD NEW INCIDENT ON TOP
+
   incidents.unshift(incident);
 
-  if (incidents.length > 15) {
+  // KEEP LAST 25 INCIDENTS
+
+  if (incidents.length > 25) {
 
     incidents.pop();
 
@@ -86,13 +99,17 @@ function generateIncident() {
 
 }
 
+// ADD FIRST INCIDENT
+
+addIncident();
+
+// AUTO ADD EVERY 5 SEC
+
 setInterval(() => {
 
-  generateIncident();
+  addIncident();
 
 }, 5000);
-
-generateIncident();
 
 router.get("/", (req, res) => {
 
