@@ -3,13 +3,21 @@
 import { useEffect, useState } from "react";
 
 interface Incident {
+
   id: number;
+
   title: string;
+
   severity: string;
+
   status: string;
+
   rootCause: string;
+
   aiConfidence: number;
+
   time: string;
+
 }
 
 export default function IncidentsList() {
@@ -77,14 +85,14 @@ export default function IncidentsList() {
 
       </div>
 
-      {/* SCROLL CONTAINER */}
+      {/* LIVE SCROLL WINDOW */}
 
       <div className="
         bg-[#070B1A]
         border border-[#1D2333]
         rounded-3xl
         p-6
-        h-175
+        h-[700px]
         overflow-y-auto
         space-y-5
       ">
@@ -113,7 +121,7 @@ export default function IncidentsList() {
               <div>
 
                 <h2 className="
-                  text-3xl
+                  text-2xl
                   font-bold
                   text-white
                 ">
@@ -123,19 +131,17 @@ export default function IncidentsList() {
                 <div className="
                   flex items-center
                   gap-3
-                  mt-3
+                  mt-2
                 ">
 
                   <span className="
                     text-gray-400
-                    text-lg
                   ">
                     Status:
                   </span>
 
                   <span className="
                     text-cyan-400
-                    text-lg
                     animate-pulse
                   ">
                     {incident.status}
@@ -159,7 +165,7 @@ export default function IncidentsList() {
 
                 <p className="
                   text-gray-500
-                  mt-3
+                  mt-2
                 ">
                   {incident.time}
                 </p>
@@ -168,78 +174,68 @@ export default function IncidentsList() {
 
             </div>
 
-            {/* ANALYSIS */}
+            {/* ROOT CAUSE */}
+
+            <div className="mt-5">
+
+              <p className="
+                text-gray-400
+                mb-2
+              ">
+                Root Cause Analysis
+              </p>
+
+              <p className="
+                text-white
+              ">
+                {incident.rootCause}
+              </p>
+
+            </div>
+
+            {/* FOOTER */}
 
             <div className="
+              flex items-center
+              justify-between
               mt-6
-              space-y-5
             ">
 
               <div>
 
                 <p className="
-                  text-gray-400
-                  mb-2
+                  text-gray-400 text-sm
                 ">
-                  Root Cause Analysis
+                  AI Confidence
                 </p>
 
                 <p className="
-                  text-white
-                  text-lg
+                  text-green-400
+                  text-xl
+                  font-bold
                 ">
-                  {incident.rootCause}
+                  {incident.aiConfidence}%
                 </p>
 
               </div>
 
-              <div className="
-                flex items-center
-                justify-between
-              ">
+              <span
+                className={`
+                  px-4 py-2 rounded-full
 
-                <div>
-
-                  <p className="
-                    text-gray-400
-                    mb-1
-                  ">
-                    AI Confidence
-                  </p>
-
-                  <p className="
-                    text-green-400
-                    text-2xl
-                    font-bold
-                  ">
-                    {incident.aiConfidence}%
-                  </p>
-
-                </div>
-
-                <div>
-
-                  <span
-                    className={`
-                      px-4 py-2 rounded-full
-
-                      ${
-                        incident.severity ===
-                        "Critical"
-                          ? "bg-red-500/20 text-red-400"
-                          : incident.severity ===
-                            "High"
-                          ? "bg-orange-500/20 text-orange-400"
-                          : "bg-yellow-500/20 text-yellow-400"
-                      }
-                    `}
-                  >
-                    {incident.severity}
-                  </span>
-
-                </div>
-
-              </div>
+                  ${
+                    incident.severity ===
+                    "Critical"
+                      ? "bg-red-500/20 text-red-400"
+                      : incident.severity ===
+                        "High"
+                      ? "bg-orange-500/20 text-orange-400"
+                      : "bg-yellow-500/20 text-yellow-400"
+                  }
+                `}
+              >
+                {incident.severity}
+              </span>
 
             </div>
 
@@ -250,6 +246,5 @@ export default function IncidentsList() {
       </div>
 
     </div>
-
   );
 }
