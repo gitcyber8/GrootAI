@@ -66,6 +66,8 @@ function addIncident() {
       )
     ];
 
+  const now = new Date();
+
   const incident = {
 
     id: Date.now(),
@@ -81,17 +83,21 @@ function addIncident() {
     aiConfidence:
       Math.floor(Math.random() * 10) + 90,
 
-    time: new Date().toLocaleTimeString(),
+    detectionTime:
+      now.toLocaleTimeString(),
+
+    detectedAt:
+      now.toLocaleDateString(),
 
   };
 
-  // ADD NEW INCIDENT ON TOP
+  // ADD NEW INCIDENT TO TOP
 
   incidents.unshift(incident);
 
-  // KEEP LAST 25 INCIDENTS
+  // KEEP MAX 50 INCIDENTS
 
-  if (incidents.length > 25) {
+  if (incidents.length > 50) {
 
     incidents.pop();
 
@@ -99,11 +105,15 @@ function addIncident() {
 
 }
 
-// ADD FIRST INCIDENT
+// INITIAL INCIDENTS
 
-addIncident();
+for (let i = 0; i < 5; i++) {
 
-// AUTO ADD EVERY 5 SEC
+  addIncident();
+
+}
+
+// CONTINUOUS INCIDENT ADDITION
 
 setInterval(() => {
 
