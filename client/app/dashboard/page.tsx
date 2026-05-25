@@ -58,7 +58,7 @@ export default function DashboardPage() {
 
         {/* Live Metrics */}
         <div className="mt-6">
-          <SystemStatus />
+          <LiveMetrics />
         </div>
 
         {/* Replay */}
@@ -93,7 +93,7 @@ export default function DashboardPage() {
 
         {/* Bottom Section */}
         <div className="grid grid-cols-2 gap-4 mt-6">
-          <MetricsChart />
+          <SystemStatus />
 
           <div className="space-y-6">
             <TimeLine />
