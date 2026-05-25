@@ -2,86 +2,218 @@
 
 import { useEffect, useState } from "react";
 
+interface Metrics {
+
+  cpu: number;
+
+  memory: number;
+
+  network: number;
+
+  api: number;
+
+  latency: number;
+
+  updatedAt: string;
+
+}
+
 export default function SystemStatus() {
-  const [time, setTime] = useState("");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const current = new Date();
+  const [metrics, setMetrics] =
+    useState<Metrics | null>(null);
 
-      setTime(
-        current.toLocaleString()
+  const fetchMetrics = async () => {
+
+    try {
+
+      const response = await fetch(
+        "https://grootai.onrender.com/api/metrices"
       );
 
-    }, 1000);
+      const data = await response.json();
+
+      setMetrics(data);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+  useEffect(() => {
+
+    fetchMetrics();
+
+    const interval = setInterval(() => {
+
+      fetchMetrics();
+
+    }, 2000);
 
     return () => clearInterval(interval);
 
   }, []);
 
   return (
-    <div className="glass rounded-3xl p-6 border border-cyan-500/20">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-cyan-400 text-sm tracking-widest">
-            SYSTEM STATUS
+
+    <div className="
+      bg-linear-to-br
+      from-blue-900
+      to-blue-700
+      rounded-3xl
+      p-8
+      shadow-2xl
+    ">
+
+      <div className="
+        flex justify-between
+        items-center
+        mb-8
+      ">
+
+        <h2 className="
+          text-5xl
+          font-bold
+          text-white
+        ">
+          System Metrics
+        </h2>
+
+        <div className="text-right">
+
+          <p className="
+            text-blue-200
+            text-sm
+          ">
+            Live Update
           </p>
 
-          <h2 className="text-2xl font-bold mt-2">
-            Autonomous AI Operations
-          </h2>
+          <p className="
+            text-cyan-300
+            font-bold
+          ">
+            {metrics?.updatedAt}
+          </p>
+
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
-
-          <span className="text-green-400">
-            ONLINE
-          </span>
-        </div>
       </div>
 
-      <div className="mt-6">
-        <p className="text-slate-400 text-sm">
-          Current System Time
-        </p>
+      {/* CPU */}
 
-        <h3 className="text-3xl font-bold mt-2 text-cyan-300">
-          {time}
-        </h3>
+      <div className="mb-8">
+
+        <div className="
+          flex justify-between
+          mb-3
+        ">
+
+          <div>
+
+            <p className="
+              text-white
+              text-2xl
+              font-semibold
+            ">
+              CPU Usage
+            </p>
+
+            <h1 className="
+              text-6xl
+              font-bold
+              text-white
+              mt-2
+            ">
+              {metrics?.cpu ?? "--"}%
+            </h1>
+
+          </div>
+
+        </div>
+
+        <div className="
+          w-full
+          h-5
+          bg-blue-950
+          rounded-full
+          overflow-hidden
+        ">
+
+          <div
+            className="
+              h-full
+              bg-cyan-400
+              transition-all
+              duration-1000
+            "
+            style={{
+              width: `${metrics?.cpu ?? 0}%`,
+            }}
+          />
+
+        </div>
+
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mt-6">
-        <div className="bg-black/30 rounded-2xl p-4">
-          <p className="text-slate-400 text-xs">
-            AI AGENTS
-          </p>
+      {/* MEMORY */}
 
-          <h3 className="text-2xl font-bold mt-2">
-            12
-          </h3>
+      <div>
+
+        <div className="
+          flex justify-between
+          mb-3
+        ">
+
+          <div>
+
+            <p className="
+              text-white
+              text-2xl
+              font-semibold
+            ">
+              Memory Usage
+            </p>
+
+            <h1 className="
+              text-6xl
+              font-bold
+              text-white
+              mt-2
+            ">
+              {metrics?.memory ?? "--"}%
+            </h1>
+
+          </div>
+
         </div>
 
-        <div className="bg-black/30 rounded-2xl p-4">
-          <p className="text-slate-400 text-xs">
-            ACTIVE MONITORS
-          </p>
+        <div className="
+          w-full
+          h-5
+          bg-blue-950
+          rounded-full
+          overflow-hidden
+        ">
 
-          <h3 className="text-2xl font-bold mt-2">
-            48
-          </h3>
+          <div
+            className="
+              h-full
+              bg-green-400
+              transition-all
+              duration-1000
+            "
+            style={{
+              width: `${metrics?.memory ?? 0}%`,
+            }}
+          />
+
         </div>
 
-        <div className="bg-black/30 rounded-2xl p-4">
-          <p className="text-slate-400 text-xs">
-            SYSTEM UPTIME
-          </p>
-
-          <h3 className="text-2xl font-bold mt-2 text-green-400">
-            99.9%
-          </h3>
-        </div>
       </div>
+
     </div>
   );
 }
