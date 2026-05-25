@@ -16,7 +16,9 @@ interface Incident {
 
   aiConfidence: number;
 
-  time: string;
+  detectionTime: string;
+
+  detectedAt: string;
 
 }
 
@@ -85,14 +87,14 @@ export default function IncidentsList() {
 
       </div>
 
-      {/* LIVE SCROLL WINDOW */}
+      {/* SCROLL FEED */}
 
       <div className="
         bg-[#070B1A]
         border border-[#1D2333]
         rounded-3xl
         p-6
-        h-[700px]
+        h-187.5
         overflow-y-auto
         space-y-5
       ">
@@ -114,7 +116,7 @@ export default function IncidentsList() {
             {/* TOP */}
 
             <div className="
-              flex items-center
+              flex items-start
               justify-between
             ">
 
@@ -131,7 +133,7 @@ export default function IncidentsList() {
                 <div className="
                   flex items-center
                   gap-3
-                  mt-2
+                  mt-3
                 ">
 
                   <span className="
@@ -151,6 +153,8 @@ export default function IncidentsList() {
 
               </div>
 
+              {/* LIVE TIME */}
+
               <div className="
                 text-right
               ">
@@ -164,10 +168,18 @@ export default function IncidentsList() {
                 " />
 
                 <p className="
-                  text-gray-500
-                  mt-2
+                  text-cyan-400
+                  mt-3
+                  font-bold
                 ">
-                  {incident.time}
+                  {incident.detectionTime}
+                </p>
+
+                <p className="
+                  text-gray-500
+                  text-sm
+                ">
+                  {incident.detectedAt}
                 </p>
 
               </div>
@@ -176,7 +188,7 @@ export default function IncidentsList() {
 
             {/* ROOT CAUSE */}
 
-            <div className="mt-5">
+            <div className="mt-6">
 
               <p className="
                 text-gray-400
@@ -187,6 +199,7 @@ export default function IncidentsList() {
 
               <p className="
                 text-white
+                leading-relaxed
               ">
                 {incident.rootCause}
               </p>
