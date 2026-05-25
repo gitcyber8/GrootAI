@@ -7,7 +7,7 @@ export default function CopilotChat() {
     {
       role: "ai",
       content:
-        "RootMind AI Copilot online. Ask about incidents, infrastructure, or remediation workflows.",
+        "Groot AI Copilot online. Ask about incidents, infrastructure, or remediation workflows.",
     },
   ]);
 
@@ -80,7 +80,7 @@ export default function CopilotChat() {
 
       <div className="mb-4">
         <p className="text-cyan-400 text-sm">
-          ROOTMIND AI
+          GROOT AI
         </p>
 
         <h2 className="text-2xl font-bold">
@@ -120,7 +120,7 @@ export default function CopilotChat() {
 
         {loading && (
           <div className="text-cyan-400 animate-pulse">
-            RootMind AI analyzing telemetry...
+            Groot AI analyzing telemetry...
           </div>
         )}
       </div>
@@ -132,7 +132,7 @@ export default function CopilotChat() {
           onChange={(e) =>
             setInput(e.target.value)
           }
-          placeholder="Ask RootMind AI..."
+          placeholder="Ask Groot AI..."
           className="
             flex-1
             bg-black/30

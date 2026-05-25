@@ -16,9 +16,7 @@ interface Incident {
 
   aiConfidence: number;
 
-  detectionTime: string;
-
-  detectedAt: string;
+  createdAt: string;
 
 }
 
@@ -26,6 +24,36 @@ export default function IncidentsList() {
 
   const [incidents, setIncidents] =
     useState<Incident[]>([]);
+
+  const [currentTime, setCurrentTime] =
+    useState("");
+
+  // LIVE SYSTEM CLOCK
+
+  useEffect(() => {
+
+    const updateClock = () => {
+
+      const now = new Date();
+
+      setCurrentTime(
+        now.toLocaleTimeString()
+      );
+
+    };
+
+    updateClock();
+
+    const timer = setInterval(
+      updateClock,
+      1000
+    );
+
+    return () => clearInterval(timer);
+
+  }, []);
+
+  // FETCH INCIDENTS
 
   const fetchIncidents = async () => {
 
@@ -67,27 +95,61 @@ export default function IncidentsList() {
 
       {/* HEADER */}
 
-      <div className="mb-6">
+      <div className="
+        flex items-center
+        justify-between
+        mb-6
+      ">
 
-        <h1 className="
-          text-5xl
-          font-bold
-          text-white
-        ">
-          Live Incidents
-        </h1>
+        <div>
 
-        <p className="
-          text-gray-400
-          mt-2
-          text-lg
+          <h1 className="
+            text-5xl
+            font-bold
+            text-white
+          ">
+            Live Incidents
+          </h1>
+
+          <p className="
+            text-gray-400
+            mt-2
+            text-lg
+          ">
+            Autonomous AI Incident Feed
+          </p>
+
+        </div>
+
+        {/* LIVE SYSTEM TIME */}
+
+        <div className="
+          bg-[#0B1030]
+          border border-cyan-500/30
+          rounded-2xl
+          px-6 py-4
         ">
-          Autonomous AI Incident Feed
-        </p>
+
+          <p className="
+            text-gray-400
+            text-sm
+          ">
+            System Time
+          </p>
+
+          <h2 className="
+            text-cyan-400
+            text-3xl
+            font-bold
+          ">
+            {currentTime}
+          </h2>
+
+        </div>
 
       </div>
 
-      {/* INCIDENT SCROLL WINDOW */}
+      {/* INCIDENT FEED */}
 
       <div className="
         bg-[#070B1A]
@@ -108,16 +170,13 @@ export default function IncidentsList() {
               border border-[#1F2A5C]
               rounded-3xl
               p-6
-              transition-all
               hover:border-cyan-400
+              transition-all
             "
           >
 
-            {/* TOP SECTION */}
-
             <div className="
-              flex items-start
-              justify-between
+              flex justify-between
             ">
 
               <div>
@@ -130,70 +189,38 @@ export default function IncidentsList() {
                   {incident.title}
                 </h2>
 
-                <div className="
-                  flex items-center
-                  gap-3
-                  mt-3
+                <p className="
+                  text-cyan-400
+                  mt-2
                 ">
-
-                  <span className="
-                    text-gray-400
-                  ">
-                    Status:
-                  </span>
-
-                  <span className="
-                    text-cyan-400
-                    animate-pulse
-                    font-semibold
-                  ">
-                    {incident.status}
-                  </span>
-
-                </div>
+                  {incident.status}
+                </p>
 
               </div>
 
-              {/* LIVE DETECTION TIME */}
+              <div className="text-right">
 
-              <div className="
-                text-right
-              ">
+                <p className="
+                  text-gray-400
+                  text-sm
+                ">
+                  Detected At
+                </p>
 
-                <div className="
-                  h-4 w-4
-                  bg-red-500
-                  rounded-full
-                  animate-ping
-                  ml-auto
-                " />
-
-                <div className="mt-3">
-
-                  <p className="
-                    text-cyan-400
-                    font-bold
-                    text-lg
-                  ">
-                    {incident.detectionTime}
-                  </p>
-
-                  <p className="
-                    text-gray-500
-                    text-sm
-                  ">
-                    Detection Time
-                  </p>
-
-                </div>
+                <p className="
+                  text-cyan-400
+                  font-bold
+                ">
+                  {new Date(
+                    incident.createdAt
+                  ).toLocaleTimeString()}
+                </p>
 
               </div>
 
             </div>
 
-            {/* ROOT CAUSE */}
-
-            <div className="mt-6">
+            <div className="mt-5">
 
               <p className="
                 text-gray-400
@@ -204,18 +231,14 @@ export default function IncidentsList() {
 
               <p className="
                 text-white
-                leading-relaxed
               ">
                 {incident.rootCause}
               </p>
 
             </div>
 
-            {/* FOOTER */}
-
             <div className="
-              flex items-center
-              justify-between
+              flex justify-between
               mt-6
             ">
 
@@ -230,43 +253,31 @@ export default function IncidentsList() {
 
                 <p className="
                   text-green-400
-                  text-xl
                   font-bold
+                  text-xl
                 ">
                   {incident.aiConfidence}%
                 </p>
 
               </div>
 
-              <div className="text-right">
+              <span
+                className={`
+                  px-4 py-2 rounded-full
 
-                <span
-                  className={`
-                    px-4 py-2 rounded-full
-
-                    ${
-                      incident.severity ===
-                      "Critical"
-                        ? "bg-red-500/20 text-red-400"
-                        : incident.severity ===
-                          "High"
-                        ? "bg-orange-500/20 text-orange-400"
-                        : "bg-yellow-500/20 text-yellow-400"
-                    }
-                  `}
-                >
-                  {incident.severity}
-                </span>
-
-                <p className="
-                  text-gray-500
-                  text-sm
-                  mt-3
-                ">
-                  {incident.detectedAt}
-                </p>
-
-              </div>
+                  ${
+                    incident.severity ===
+                    "Critical"
+                      ? "bg-red-500/20 text-red-400"
+                      : incident.severity ===
+                        "High"
+                      ? "bg-orange-500/20 text-orange-400"
+                      : "bg-yellow-500/20 text-yellow-400"
+                  }
+                `}
+              >
+                {incident.severity}
+              </span>
 
             </div>
 
