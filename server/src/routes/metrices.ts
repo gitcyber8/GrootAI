@@ -2,31 +2,25 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (_req, res) => {
 
-  const telemetry = {
+  const metrics = {
 
-    cpu:
-      Math.floor(Math.random() * 40) + 40,
+    cpu: Math.floor(Math.random() * 40) + 40,
 
-    memory:
-      Math.floor(Math.random() * 30) + 50,
+    memory: Math.floor(Math.random() * 30) + 50,
 
-    network:
-      Math.floor(Math.random() * 500) + 300,
+    network: Math.floor(Math.random() * 500) + 200,
 
-    api:
-      Math.floor(Math.random() * 2000) + 1000,
+    api: Math.floor(Math.random() * 3000) + 1000,
 
-    latency:
-      Math.floor(Math.random() * 100) + 20,
+    latency: Math.floor(Math.random() * 100) + 20,
 
-    updatedAt:
-      new Date().toLocaleTimeString(),
+    updatedAt: new Date().toLocaleTimeString(),
 
   };
 
-  res.json(telemetry);
+  res.json(metrics);
 
 });
 
