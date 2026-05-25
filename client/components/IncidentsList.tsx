@@ -87,7 +87,7 @@ export default function IncidentsList() {
 
       </div>
 
-      {/* SCROLL FEED */}
+      {/* INCIDENT SCROLL WINDOW */}
 
       <div className="
         bg-[#070B1A]
@@ -113,7 +113,7 @@ export default function IncidentsList() {
             "
           >
 
-            {/* TOP */}
+            {/* TOP SECTION */}
 
             <div className="
               flex items-start
@@ -145,6 +145,7 @@ export default function IncidentsList() {
                   <span className="
                     text-cyan-400
                     animate-pulse
+                    font-semibold
                   ">
                     {incident.status}
                   </span>
@@ -153,7 +154,7 @@ export default function IncidentsList() {
 
               </div>
 
-              {/* LIVE TIME */}
+              {/* LIVE DETECTION TIME */}
 
               <div className="
                 text-right
@@ -167,20 +168,24 @@ export default function IncidentsList() {
                   ml-auto
                 " />
 
-                <p className="
-                  text-cyan-400
-                  mt-3
-                  font-bold
-                ">
-                  {incident.detectionTime}
-                </p>
+                <div className="mt-3">
 
-                <p className="
-                  text-gray-500
-                  text-sm
-                ">
-                  {incident.detectedAt}
-                </p>
+                  <p className="
+                    text-cyan-400
+                    font-bold
+                    text-lg
+                  ">
+                    {incident.detectionTime}
+                  </p>
+
+                  <p className="
+                    text-gray-500
+                    text-sm
+                  ">
+                    Detection Time
+                  </p>
+
+                </div>
 
               </div>
 
@@ -217,7 +222,8 @@ export default function IncidentsList() {
               <div>
 
                 <p className="
-                  text-gray-400 text-sm
+                  text-gray-400
+                  text-sm
                 ">
                   AI Confidence
                 </p>
@@ -232,23 +238,35 @@ export default function IncidentsList() {
 
               </div>
 
-              <span
-                className={`
-                  px-4 py-2 rounded-full
+              <div className="text-right">
 
-                  ${
-                    incident.severity ===
-                    "Critical"
-                      ? "bg-red-500/20 text-red-400"
-                      : incident.severity ===
-                        "High"
-                      ? "bg-orange-500/20 text-orange-400"
-                      : "bg-yellow-500/20 text-yellow-400"
-                  }
-                `}
-              >
-                {incident.severity}
-              </span>
+                <span
+                  className={`
+                    px-4 py-2 rounded-full
+
+                    ${
+                      incident.severity ===
+                      "Critical"
+                        ? "bg-red-500/20 text-red-400"
+                        : incident.severity ===
+                          "High"
+                        ? "bg-orange-500/20 text-orange-400"
+                        : "bg-yellow-500/20 text-yellow-400"
+                    }
+                  `}
+                >
+                  {incident.severity}
+                </span>
+
+                <p className="
+                  text-gray-500
+                  text-sm
+                  mt-3
+                ">
+                  {incident.detectedAt}
+                </p>
+
+              </div>
 
             </div>
 
