@@ -2,82 +2,102 @@ import express from "express";
 
 const router = express.Router();
 
-const incidentTemplates = [
+let incidents: any[] = [];
+
+const templates = [
+
+  {
+    title: "Container Memory Leak",
+    severity: "Critical",
+    status: "Detected",
+    rootCause:
+      "Redis memory overflow caused cache instability.",
+  },
+
   {
     title: "Kubernetes Pod Crash",
-    severity: "Critical",
-    status: "Investigating",
+    severity: "High",
+    status: "Mitigating",
+    rootCause:
+      "Node pressure triggered pod eviction cascade.",
   },
 
   {
     title: "API Gateway Latency Spike",
-    severity: "High",
-    status: "Mitigated",
-  },
-
-  {
-    title: "Database Connection Saturation",
     severity: "Medium",
     status: "Monitoring",
+    rootCause:
+      "Traffic surge overloaded edge gateway clusters.",
   },
 
   {
-    title: "Redis Cache Eviction Storm",
-    severity: "High",
-    status: "Investigating",
-  },
-
-  {
-    title: "Memory Leak Detected",
+    title: "Database Replication Failure",
     severity: "Critical",
     status: "Escalated",
+    rootCause:
+      "Replication lag exceeded safe threshold limits.",
   },
 
   {
     title: "Authentication Service Timeout",
     severity: "High",
-    status: "Mitigated",
+    status: "Analyzing",
+    rootCause:
+      "OAuth token validation service degraded.",
   },
 
-  {
-    title: "Disk Usage Threshold Exceeded",
-    severity: "Medium",
-    status: "Monitoring",
-  },
 ];
+
+function generateIncident() {
+
+  const random =
+    templates[
+      Math.floor(
+        Math.random() * templates.length
+      )
+    ];
+
+  const incident = {
+
+    id: Date.now(),
+
+    title: random.title,
+
+    severity: random.severity,
+
+    status: random.status,
+
+    rootCause: random.rootCause,
+
+    aiConfidence:
+      Math.floor(Math.random() * 10) + 90,
+
+    time: new Date().toLocaleTimeString(),
+
+  };
+
+  incidents.unshift(incident);
+
+  if (incidents.length > 15) {
+
+    incidents.pop();
+
+  }
+
+}
+
+setInterval(() => {
+
+  generateIncident();
+
+}, 5000);
+
+generateIncident();
 
 router.get("/", (req, res) => {
 
-  const shuffled = incidentTemplates
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 4);
-
-  const incidents = shuffled.map(
-    (incident, index) => ({
-      id: index + 1,
-
-      title: incident.title,
-
-      severity: incident.severity,
-
-      status: incident.status,
-
-      time: new Date().toLocaleTimeString(),
-
-      aiConfidence:
-        Math.floor(Math.random() * 15) + 85,
-
-      affectedNodes:
-        Math.floor(Math.random() * 12) + 2,
-
-      autoRemediation:
-        Math.random() > 0.5
-          ? "Triggered"
-          : "Pending",
-    })
-  );
-
   res.json(incidents);
+
 });
 
 export default router;
