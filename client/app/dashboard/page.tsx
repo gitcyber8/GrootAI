@@ -15,7 +15,7 @@ import IncidentReplay from "@/components/IncidentReplay";
 import ActionCenter from "@/components/ActionCenter";
 import IncidentReport from "@/components/IncidentReport";
 import ServiceTopology from "@/components/ServiceTopology";
-
+import SystemStatus from "@/components/SystemStatus";
 export default function DashboardPage() {
   return (
     <main className="flex bg-[#050816] text-white min-h-screen">
@@ -58,7 +58,7 @@ export default function DashboardPage() {
 
         {/* Live Metrics */}
         <div className="mt-6">
-          <LiveMetrics />
+          <SystemStatus />
         </div>
 
         {/* Replay */}
