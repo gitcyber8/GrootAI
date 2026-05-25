@@ -95,7 +95,7 @@ export default function SystemStatus() {
             text-cyan-300
             font-bold
           ">
-            {metrics?.updatedAt}
+            {new Date().toLocaleDateString()}
           </p>
 
         </div>

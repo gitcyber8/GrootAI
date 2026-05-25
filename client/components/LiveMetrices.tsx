@@ -156,7 +156,7 @@ export default function LiveMetrices() {
             text-cyan-400
             font-bold
           ">
-            {metrics?.updatedAt}
+            {new Date().toLocaleDateString()}
           </p>
 
         </div>
