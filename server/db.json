@@ -2222,10 +2222,386 @@
     {
       "title": "Database Replication Failure",
       "severity": "Medium",
-      "status": "Auto Remediation Running",
+      "status": "Resolved",
       "aiAnalysis": "\nRoot Cause Analysis:\nAPI gateway timeout triggered cascading failures.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n87%\n  ",
       "solution": "Autonomous remediation workflow initiated.",
       "createdAt": "2026-05-25T10:41:56.479Z"
+    },
+    {
+      "title": "Redis Cache Failure",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nAPI gateway timeout triggered cascading failures.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n96%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:42:26.478Z"
+    },
+    {
+      "title": "Kubernetes Pod Crash",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n95%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:42:56.488Z"
+    },
+    {
+      "title": "Service Mesh Failure",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nService mesh communication failure detected.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n92%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:43:26.496Z"
+    },
+    {
+      "title": "Service Mesh Failure",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nAPI gateway timeout triggered cascading failures.\n\nRecommended Remediation:\nRollback deployment executed automatically.\n\nAI Confidence Score:\n86%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:43:56.497Z"
+    },
+    {
+      "title": "Service Mesh Failure",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n93%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:44:26.505Z"
+    },
+    {
+      "title": "Kubernetes Pod Crash",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nAI restarted affected services automatically.\n\nAI Confidence Score:\n95%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:44:56.510Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nAI restarted affected services automatically.\n\nAI Confidence Score:\n99%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:45:26.514Z"
+    },
+    {
+      "title": "Redis Cache Failure",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nDatabase replication lag exceeded safe thresholds.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n95%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:45:56.520Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n98%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:46:26.535Z"
+    },
+    {
+      "title": "Container Memory Leak",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nAPI gateway timeout triggered cascading failures.\n\nRecommended Remediation:\nTraffic rerouting initiated successfully.\n\nAI Confidence Score:\n97%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:46:56.537Z"
+    },
+    {
+      "title": "Database Replication Failure",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nTraffic rerouting initiated successfully.\n\nAI Confidence Score:\n93%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:47:26.543Z"
+    },
+    {
+      "title": "Kubernetes Pod Crash",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nService mesh communication failure detected.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n88%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:47:56.553Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nFaulty nodes isolated by remediation engine.\n\nAI Confidence Score:\n85%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:48:26.554Z"
+    },
+    {
+      "title": "Redis Cache Failure",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nRollback deployment executed automatically.\n\nAI Confidence Score:\n82%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:48:56.559Z"
+    },
+    {
+      "title": "Kubernetes Pod Crash",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nAPI gateway timeout triggered cascading failures.\n\nRecommended Remediation:\nFaulty nodes isolated by remediation engine.\n\nAI Confidence Score:\n96%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:49:26.574Z"
+    },
+    {
+      "title": "Container Memory Leak",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nRedis memory overflow caused cache instability.\n\nRecommended Remediation:\nTraffic rerouting initiated successfully.\n\nAI Confidence Score:\n90%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:49:56.582Z"
+    },
+    {
+      "title": "API Gateway Timeout",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nFaulty nodes isolated by remediation engine.\n\nAI Confidence Score:\n95%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:50:26.589Z"
+    },
+    {
+      "title": "API Gateway Timeout",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nService mesh communication failure detected.\n\nRecommended Remediation:\nTraffic rerouting initiated successfully.\n\nAI Confidence Score:\n91%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:50:56.597Z"
+    },
+    {
+      "title": "Service Mesh Failure",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nDatabase replication lag exceeded safe thresholds.\n\nRecommended Remediation:\nTraffic rerouting initiated successfully.\n\nAI Confidence Score:\n87%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:51:26.601Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nTraffic rerouting initiated successfully.\n\nAI Confidence Score:\n84%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:51:56.609Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nTraffic rerouting initiated successfully.\n\nAI Confidence Score:\n98%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:52:26.613Z"
+    },
+    {
+      "title": "AI Infrastructure Anomaly",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nAI restarted affected services automatically.\n\nAI Confidence Score:\n96%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:52:56.622Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nAPI gateway timeout triggered cascading failures.\n\nRecommended Remediation:\nFaulty nodes isolated by remediation engine.\n\nAI Confidence Score:\n93%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:53:26.630Z"
+    },
+    {
+      "title": "Database Replication Failure",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nService mesh communication failure detected.\n\nRecommended Remediation:\nFaulty nodes isolated by remediation engine.\n\nAI Confidence Score:\n98%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:53:56.643Z"
+    },
+    {
+      "title": "Kubernetes Pod Crash",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nDatabase replication lag exceeded safe thresholds.\n\nRecommended Remediation:\nFaulty nodes isolated by remediation engine.\n\nAI Confidence Score:\n80%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:54:26.651Z"
+    },
+    {
+      "title": "Container Memory Leak",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nTraffic rerouting initiated successfully.\n\nAI Confidence Score:\n89%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:54:56.655Z"
+    },
+    {
+      "title": "Redis Cache Failure",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nDatabase replication lag exceeded safe thresholds.\n\nRecommended Remediation:\nAI restarted affected services automatically.\n\nAI Confidence Score:\n89%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:55:26.658Z"
+    },
+    {
+      "title": "Service Mesh Failure",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nAPI gateway timeout triggered cascading failures.\n\nRecommended Remediation:\nFaulty nodes isolated by remediation engine.\n\nAI Confidence Score:\n92%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:55:56.662Z"
+    },
+    {
+      "title": "Database Replication Failure",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n92%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:56:26.670Z"
+    },
+    {
+      "title": "Redis Cache Failure",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nTraffic rerouting initiated successfully.\n\nAI Confidence Score:\n85%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:56:56.682Z"
+    },
+    {
+      "title": "Redis Cache Failure",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nService mesh communication failure detected.\n\nRecommended Remediation:\nRollback deployment executed automatically.\n\nAI Confidence Score:\n99%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:57:26.684Z"
+    },
+    {
+      "title": "Redis Cache Failure",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nService mesh communication failure detected.\n\nRecommended Remediation:\nAI restarted affected services automatically.\n\nAI Confidence Score:\n85%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:57:56.698Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nService mesh communication failure detected.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n95%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:58:26.713Z"
+    },
+    {
+      "title": "Container Memory Leak",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nCache cleanup and failover executed.\n\nAI Confidence Score:\n88%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:58:56.723Z"
+    },
+    {
+      "title": "AI Infrastructure Anomaly",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nAPI gateway timeout triggered cascading failures.\n\nRecommended Remediation:\nAI restarted affected services automatically.\n\nAI Confidence Score:\n88%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:59:26.725Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n80%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T10:59:56.727Z"
+    },
+    {
+      "title": "Container Memory Leak",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nCache cleanup and failover executed.\n\nAI Confidence Score:\n95%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:00:26.733Z"
+    },
+    {
+      "title": "Kubernetes Pod Crash",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nKubernetes restart loop detected due to CPU throttling.\n\nRecommended Remediation:\nCache cleanup and failover executed.\n\nAI Confidence Score:\n93%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:00:56.737Z"
+    },
+    {
+      "title": "API Gateway Timeout",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nService mesh communication failure detected.\n\nRecommended Remediation:\nCache cleanup and failover executed.\n\nAI Confidence Score:\n80%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:01:26.743Z"
+    },
+    {
+      "title": "Database Replication Failure",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nRedis memory overflow caused cache instability.\n\nRecommended Remediation:\nFaulty nodes isolated by remediation engine.\n\nAI Confidence Score:\n97%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:01:56.748Z"
+    },
+    {
+      "title": "Container Memory Leak",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nRedis memory overflow caused cache instability.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n98%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:02:26.764Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nRedis memory overflow caused cache instability.\n\nRecommended Remediation:\nAI restarted affected services automatically.\n\nAI Confidence Score:\n96%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:02:56.769Z"
+    },
+    {
+      "title": "Kubernetes Pod Crash",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nAPI gateway timeout triggered cascading failures.\n\nRecommended Remediation:\nRollback deployment executed automatically.\n\nAI Confidence Score:\n91%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:03:26.782Z"
+    },
+    {
+      "title": "API Gateway Timeout",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nRedis memory overflow caused cache instability.\n\nRecommended Remediation:\nCache cleanup and failover executed.\n\nAI Confidence Score:\n94%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:03:56.784Z"
+    },
+    {
+      "title": "Redis Cache Failure",
+      "severity": "High",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n94%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:04:26.794Z"
+    },
+    {
+      "title": "High CPU Usage Detected",
+      "severity": "Critical",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nContainer memory leak degraded service health.\n\nRecommended Remediation:\nAutoscaling workflows were triggered.\n\nAI Confidence Score:\n89%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:04:56.800Z"
+    },
+    {
+      "title": "Redis Cache Failure",
+      "severity": "Medium",
+      "status": "Resolved",
+      "aiAnalysis": "\nRoot Cause Analysis:\nRedis memory overflow caused cache instability.\n\nRecommended Remediation:\nFaulty nodes isolated by remediation engine.\n\nAI Confidence Score:\n96%\n  ",
+      "solution": "Autonomous remediation workflow initiated.",
+      "createdAt": "2026-05-25T11:05:26.806Z"
     }
   ]
 }
