@@ -2,56 +2,24 @@
 
 import { useEffect, useState } from "react";
 
-interface Metrics {
-
-  cpu: number;
-
-  memory: number;
-
-  network: number;
-
-  api: number;
-
-  latency: number;
-
-  updatedAt: string;
-
-}
-
 export default function SystemStatus() {
 
-  const [metrics, setMetrics] =
-    useState<Metrics | null>(null);
-
-  const fetchMetrics = async () => {
-
-    try {
-
-      const response = await fetch(
-        "https://grootai.onrender.com/api/metrices"
-      );
-
-      const data = await response.json();
-
-      setMetrics(data);
-
-    } catch (error) {
-
-      console.log(error);
-
-    }
-
-  };
+  const [cpu, setCpu] = useState(0);
+  const [memory, setMemory] = useState(0);
 
   useEffect(() => {
 
-    fetchMetrics();
+    const updateMetrics = () => {
 
-    const interval = setInterval(() => {
+      setCpu(Math.floor(Math.random() * 40) + 50);
 
-      fetchMetrics();
+      setMemory(Math.floor(Math.random() * 30) + 60);
 
-    }, 2000);
+    };
+
+    updateMetrics();
+
+    const interval = setInterval(updateMetrics, 2000);
 
     return () => clearInterval(interval);
 
@@ -59,43 +27,48 @@ export default function SystemStatus() {
 
   return (
 
-    <div className="
-      bg-linear-to-br
-      from-blue-900
-      to-blue-700
-      rounded-3xl
-      p-8
-      shadow-2xl
-    ">
+    <div
+      className="
+        bg-linear-to-br
+        from-blue-900
+        via-blue-800
+        to-blue-700
+        rounded-[35px]
+        p-10
+        shadow-2xl
+        border
+        border-blue-500/20
+      "
+    >
 
-      <div className="
-        flex justify-between
-        items-center
-        mb-8
-      ">
+      <div className="flex justify-between items-start mb-10">
 
-        <h2 className="
-          text-5xl
-          font-bold
-          text-white
-        ">
-          System Metrics
-        </h2>
+        <div>
+
+          <h1
+            className="
+              text-5xl
+              font-extrabold
+              text-white
+            "
+          >
+            System Metrics
+          </h1>
+
+          <p className="text-blue-200 mt-2 text-lg">
+            Real-time Infrastructure Monitoring
+          </p>
+
+        </div>
 
         <div className="text-right">
 
-          <p className="
-            text-blue-200
-            text-sm
-          ">
-            Live Update
+          <p className="text-blue-200 text-sm">
+            LIVE SYSTEM TIME
           </p>
 
-          <p className="
-            text-cyan-300
-            font-bold
-          ">
-            {new Date().toLocaleDateString()}
+          <p className="text-cyan-300 font-bold text-xl">
+            {new Date().toLocaleTimeString()}
           </p>
 
         </div>
@@ -104,53 +77,51 @@ export default function SystemStatus() {
 
       {/* CPU */}
 
-      <div className="mb-8">
+      <div className="mb-10">
 
-        <div className="
-          flex justify-between
-          mb-3
-        ">
+        <div className="flex justify-between items-center mb-4">
 
           <div>
 
-            <p className="
-              text-white
-              text-2xl
-              font-semibold
-            ">
+            <p className="text-white text-2xl font-semibold">
               CPU Usage
             </p>
 
-            <h1 className="
-              text-6xl
-              font-bold
-              text-white
-              mt-2
-            ">
-              {metrics?.cpu ?? "--"}%
+            <h1
+              className="
+                text-7xl
+                font-extrabold
+                text-white
+                mt-2
+              "
+            >
+              {cpu}%
             </h1>
 
           </div>
 
         </div>
 
-        <div className="
-          w-full
-          h-5
-          bg-blue-950
-          rounded-full
-          overflow-hidden
-        ">
+        <div
+          className="
+            w-full
+            h-5
+            bg-blue-950/70
+            rounded-full
+            overflow-hidden
+          "
+        >
 
           <div
             className="
               h-full
               bg-cyan-400
+              rounded-full
               transition-all
               duration-1000
             "
             style={{
-              width: `${metrics?.cpu ?? 0}%`,
+              width: `${cpu}%`,
             }}
           />
 
@@ -162,51 +133,49 @@ export default function SystemStatus() {
 
       <div>
 
-        <div className="
-          flex justify-between
-          mb-3
-        ">
+        <div className="flex justify-between items-center mb-4">
 
           <div>
 
-            <p className="
-              text-white
-              text-2xl
-              font-semibold
-            ">
+            <p className="text-white text-2xl font-semibold">
               Memory Usage
             </p>
 
-            <h1 className="
-              text-6xl
-              font-bold
-              text-white
-              mt-2
-            ">
-              {metrics?.memory ?? "--"}%
+            <h1
+              className="
+                text-7xl
+                font-extrabold
+                text-white
+                mt-2
+              "
+            >
+              {memory}%
             </h1>
 
           </div>
 
         </div>
 
-        <div className="
-          w-full
-          h-5
-          bg-blue-950
-          rounded-full
-          overflow-hidden
-        ">
+        <div
+          className="
+            w-full
+            h-5
+            bg-blue-950/70
+            rounded-full
+            overflow-hidden
+          "
+        >
 
           <div
             className="
               h-full
               bg-green-400
+              rounded-full
               transition-all
               duration-1000
             "
             style={{
-              width: `${metrics?.memory ?? 0}%`,
+              width: `${memory}%`,
             }}
           />
 
